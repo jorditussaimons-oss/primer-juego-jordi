@@ -5,16 +5,16 @@ public class Target : MonoBehaviour
 {
     public int health = 100;
 
-    private Renderer renderer;
+    public Renderer renderer;
     private Color originalColor;
 
     private void Start()
     {
-        renderer = GetComponent<Renderer>();
+        
 
         renderer.material = new Material(renderer.material);
 
-        originalColor = renderer.material.color;
+        originalColor = renderer.material.GetColor("_MinColor");
     }
 
     public void TakeDamage(int damage)
@@ -31,7 +31,7 @@ public class Target : MonoBehaviour
 
     IEnumerator FlashRed()
     {
-        renderer.material.color = Color.red;
+        renderer.material.SetColor("_MainColor", Color.red);
 
         yield return new WaitForSeconds(0.1f);
 
